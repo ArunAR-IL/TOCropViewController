@@ -40,6 +40,8 @@
 @property (nonatomic, strong) UIButton *rotateButton; // defaults to counterclockwise button for legacy compatibility
 
 @property (nonatomic, assign) BOOL reverseContentLayout; // For languages like Arabic where they natively present content flipped from English
+@property (nonatomic,strong)  UIButton *largeButton;
+
 
 @end
 
@@ -146,6 +148,8 @@
                                                                          resourceBundle,
                                                                          nil);
     [self addSubview:_resetButton];
+    self.largeButton = [[UIButton alloc] initWithFrame:self.frame];
+    [self.backgroundView addSubview:self.largeButton];
 }
 
 - (void)layoutSubviews
@@ -283,6 +287,8 @@
         
         [self layoutToolbarButtons:buttonsInOrderVertically withSameButtonSize:buttonSize inContainerRect:containerRect horizontally:NO];
     }
+    self.largeButton.frame = self.backgroundView.frame;
+
 }
 
 // The convenience method for calculating button's frame inside of the container rect
